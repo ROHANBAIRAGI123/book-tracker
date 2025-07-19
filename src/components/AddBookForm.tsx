@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useBookStoreFormData } from "@/store/useBookStore";
 
 // Defines the data structure for a new book
 
@@ -6,14 +7,7 @@ export const AddBookForm: React.FC<AddBookFormProps> = ({
   onClose,
   onSubmit,
 }) => {
-  const [formData, setFormData] = useState<NewBookData>({
-    title: "",
-    author: "",
-    currentPage: "0",
-    totalPages: "0",
-    status: "to be read",
-    type: "",
-  });
+  const { formData, setFormData } = useBookStoreFormData();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -24,11 +18,21 @@ export const AddBookForm: React.FC<AddBookFormProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    const currentPage = parseInt(formData.currentPage, 10);
+    const totalPages = parseInt(formData.totalPages, 10);
+    if (isNaN(currentPage) || isNaN(totalPages)) {
+      alert("Please enter valid numbers for current page and total pages");
+      return;
+    }
+    if (currentPage > totalPages) {
+      alert("Current page cannot be greater than total pages");
+      return;
+    }
     // Convert string inputs to numbers
     const newBook = {
       ...formData,
-      currentPage: parseInt(formData.currentPage, 10),
-      totalPages: parseInt(formData.totalPages, 10),
+      currentPage,
+      totalPages,
     };
 
     onSubmit(newBook);

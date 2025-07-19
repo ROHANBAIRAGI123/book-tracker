@@ -1,12 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { BookCard } from "./BookCard";
 import { AddBookForm } from "./AddBookForm";
 import { v4 as uuidv4 } from "uuid";
+import { useBookStoreForm, useBookStoreList } from "../store/useBookStore";
 
 export const ReadingList: React.FC<ReadingListProps> = ({ books, title }) => {
-  const [showAddBookForm, setShowAddBookForm] = useState(false);
-  const [bookList, setBookList] = useState<Book[]>(books);
+  const { showAddBookForm, setShowAddBookForm } = useBookStoreForm();
+  const { bookList, setBookList } = useBookStoreList();
+
+  useEffect(() => {
+    setBookList(books);
+  }, [books]);
 
   const booksReadCount = bookList.filter(
     (book) => book.status === "completed"
