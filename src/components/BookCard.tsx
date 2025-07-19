@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 export const BookCard: React.FC<BookCardProps> = ({
   title,
@@ -8,6 +8,7 @@ export const BookCard: React.FC<BookCardProps> = ({
   status,
   type,
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
   const progress = (currentPage / totalPages) * 100;
 
   return (
@@ -33,8 +34,18 @@ export const BookCard: React.FC<BookCardProps> = ({
           <p className="text-neutral-400 text-md mb-2 truncate font-inter">
             {author}
           </p>
-          <p className="text-neutral-500 text-s font-inter">
-            Page {currentPage} of {totalPages}
+          <p
+            className="text-neutral-500 text-s font-inter "
+            onMouseOver={() => {
+              setIsHovered(true);
+            }}
+            onMouseLeave={() => {
+              setIsHovered(false);
+            }}
+          >
+            {isHovered
+              ? `completed ${progress.toFixed(2)}%`
+              : ` Page ${currentPage} of ${totalPages}`}
           </p>
         </div>
 

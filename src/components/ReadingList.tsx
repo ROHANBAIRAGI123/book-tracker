@@ -4,6 +4,7 @@ import { BookCard } from "./BookCard";
 import { AddBookForm } from "./AddBookForm";
 import { v4 as uuidv4 } from "uuid";
 import { useBookStoreForm, useBookStoreList } from "../store/useBookStore";
+import { addValueToStorage } from "@/helpers/localStorageApi";
 
 export const ReadingList: React.FC<ReadingListProps> = ({ books, title }) => {
   const { showAddBookForm, setShowAddBookForm } = useBookStoreForm();
@@ -22,7 +23,7 @@ export const ReadingList: React.FC<ReadingListProps> = ({ books, title }) => {
   const handleAddBook = (newBookData: Omit<Book, "id">) => {
     const newBook = { id: uuidv4(), ...newBookData };
     setBookList([...bookList, newBook]);
-    localStorage.setItem("books", JSON.stringify([...bookList, newBook]));
+    addValueToStorage(newBook);
   };
 
   return (
