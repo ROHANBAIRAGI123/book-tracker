@@ -1,24 +1,6 @@
 import React, { useState } from "react";
 
 // Defines the data structure for a new book
-interface NewBookData {
-  title: string;
-  author: string;
-  currentPage: string;
-  totalPages: string;
-  status: "in progress" | "completed" | "to be read";
-  type: string;
-}
-
-interface AddBookFormProps {
-  onClose: () => void;
-  onSubmit: (
-    book: Omit<NewBookData, "currentPage" | "totalPages"> & {
-      currentPage: number;
-      totalPages: number;
-    }
-  ) => void;
-}
 
 export const AddBookForm: React.FC<AddBookFormProps> = ({
   onClose,

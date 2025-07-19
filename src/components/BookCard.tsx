@@ -1,14 +1,5 @@
 import React from "react";
 
-interface BookCardProps {
-  title: string;
-  author: string;
-  currentPage: number;
-  totalPages: number;
-  status: string;
-  type: string;
-}
-
 export const BookCard: React.FC<BookCardProps> = ({
   title,
   author,

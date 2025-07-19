@@ -4,21 +4,6 @@ import { BookCard } from "./BookCard";
 import { AddBookForm } from "./AddBookForm";
 import { v4 as uuidv4 } from "uuid";
 
-interface Book {
-  id: string;
-  title: string;
-  author: string;
-  currentPage: number;
-  totalPages: number;
-  status: string;
-  type: string;
-}
-
-interface ReadingListProps {
-  books: Book[];
-  title: string;
-}
-
 export const ReadingList: React.FC<ReadingListProps> = ({ books, title }) => {
   const [showAddBookForm, setShowAddBookForm] = useState(false);
   const [bookList, setBookList] = useState<Book[]>(books);
