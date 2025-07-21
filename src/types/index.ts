@@ -40,3 +40,8 @@ interface AddBookFormProps {
     }
   ) => void;
 }
+interface AddPagesProps {
+  onClose: () => void;
+  onUpdate: () => void;
+  title: string;
+}

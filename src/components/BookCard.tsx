@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { AddPages } from "./AddPages";
+import { useBookStoreList } from "@/store/useBookStore";
+import { getValueFromStorage } from "@/helpers/localStorageApi";
 
 export const BookCard: React.FC<BookCardProps> = ({
   title,
@@ -9,7 +12,13 @@ export const BookCard: React.FC<BookCardProps> = ({
   type,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [showAddPages, setShowAddPages] = useState(false);
+  const { setBookList } = useBookStoreList();
   const progress = (currentPage / totalPages) * 100;
+
+  const handleDataUpdate = () => {
+    setBookList(getValueFromStorage());
+  };
 
   return (
     // Main container with responsive padding and max-width for bigger screens
@@ -42,6 +51,10 @@ export const BookCard: React.FC<BookCardProps> = ({
             onMouseLeave={() => {
               setIsHovered(false);
             }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowAddPages(true);
+            }}
           >
             {isHovered
               ? `completed ${progress.toFixed(2)}%`
@@ -54,6 +67,15 @@ export const BookCard: React.FC<BookCardProps> = ({
           <p>{type}</p>
         </div>
       </div>
+      {showAddPages && (
+        <div className="fixed inset-0 bg-white/10 backdrop-blur-none flex items-center justify-center z-10">
+          <AddPages
+            onClose={() => setShowAddPages(false)}
+            title={title}
+            onUpdate={handleDataUpdate}
+          />
+        </div>
+      )}
     </div>
   );
 };
