@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String  @id @default(cuid())
+  email      String  @unique
+  books      Book[]
+  subscriptionStatus String @default("free")
+}
+
+model Book {
+  id            String   @id @default(cuid())
+  title         String
+  author        String
+  totalPages    Int
+  currentPage   Int       @default(0)
+  status        BookStatus @default(READING)
+  dateAdded     DateTime  @default(now())
+  dateCompleted DateTime?
+  cover         String
+  notes         String?
+
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  
+  genreId       String
+  genre         Genre     @relation(fields: [genreId], references: [id])
+
+  progressLogs  Progress[]  
+}
+
+model Genre {
+  id String @id @default(cuid())
+  name String
+  books Book[]
+}
+
+model Progress {
+  id String @id @default(cuid())
+  pagesRead Int
+  createdAt DateTime @default(now())
+
+  bookId String
+  book Book @relation(fields: [bookId], references: [id])
+}
+
+enum BookStatus {
+  READING
+  COMPLETED
+  ON_HOLD
+  DROPPED
+}
+
