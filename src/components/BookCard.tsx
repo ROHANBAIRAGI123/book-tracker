@@ -3,6 +3,7 @@ import { AddPages } from "./AddPages";
 import { useBookStoreList, useDeleteBook } from "@/store/useBookStore";
 import { getValueFromStorage } from "@/helpers/localStorageApi";
 import { HiDotsVertical } from "react-icons/hi";
+import { BookCardProps } from "@/types";
 
 export const BookCard: React.FC<BookCardProps> = ({
   title,

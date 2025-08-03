@@ -1,4 +1,5 @@
 import { updateBookValue } from "@/helpers/localStorageApi";
+import { AddPagesProps } from "@/types";
 import React from "react";
 
 // Defines the data structure for a new book
