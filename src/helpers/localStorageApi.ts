@@ -1,3 +1,5 @@
+import { Book } from "@/types";
+
 export const getValueFromStorage = () => {
   const stored = localStorage.getItem("books");
   if (stored) {

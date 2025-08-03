@@ -1,4 +1,4 @@
-interface Book {
+export interface Book {
   id: string;
   title: string;
   author: string;
@@ -8,12 +8,12 @@ interface Book {
   type: string;
 }
 
-interface ReadingListProps {
+export interface ReadingListProps {
   books: Book[];
   title: string;
 }
 
-interface BookCardProps {
+export interface BookCardProps {
   title: string;
   author: string;
   currentPage: number;
@@ -22,7 +22,7 @@ interface BookCardProps {
   type: string;
 }
 
-interface NewBookData {
+export interface NewBookData {
   title: string;
   author: string;
   currentPage: string;
@@ -31,7 +31,7 @@ interface NewBookData {
   type: string;
 }
 
-interface AddBookFormProps {
+export interface AddBookFormProps {
   onClose: () => void;
   onSubmit: (
     book: Omit<NewBookData, "currentPage" | "totalPages"> & {
@@ -40,7 +40,8 @@ interface AddBookFormProps {
     }
   ) => void;
 }
-interface AddPagesProps {
+
+export interface AddPagesProps {
   onClose: () => void;
   onUpdate: () => void;
   title: string;

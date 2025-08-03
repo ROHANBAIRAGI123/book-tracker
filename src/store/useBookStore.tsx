@@ -1,4 +1,5 @@
 import { deleteBookFromStorage } from "@/helpers/localStorageApi";
+import { Book, NewBookData } from "@/types";
 import { create } from "zustand";
 
 type BookStoreForm = {
@@ -44,7 +45,7 @@ const useBookStoreFormData = create<BookStoreFormData>()((set) => ({
   },
 }));
 
-const useDeleteBook = create<DeleteBookProp>()((set) => ({
+const useDeleteBook = create<DeleteBookProp>()(() => ({
   deleteBook: (title: string) => {
     deleteBookFromStorage(title);
   },

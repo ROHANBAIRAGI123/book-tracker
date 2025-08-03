@@ -1,5 +1,6 @@
 import React from "react";
 import { useBookStoreFormData } from "@/store/useBookStore";
+import { AddBookFormProps } from "@/types";
 
 // Defines the data structure for a new book
 

@@ -5,6 +5,7 @@ import { AddBookForm } from "./AddBookForm";
 import { v4 as uuidv4 } from "uuid";
 import { useBookStoreForm, useBookStoreList } from "../store/useBookStore";
 import { addValueToStorage } from "@/helpers/localStorageApi";
+import { ReadingListProps, Book } from "@/types";
 
 export const ReadingList: React.FC<ReadingListProps> = ({ books, title }) => {
   const { showAddBookForm, setShowAddBookForm } = useBookStoreForm();
@@ -12,6 +13,7 @@ export const ReadingList: React.FC<ReadingListProps> = ({ books, title }) => {
 
   useEffect(() => {
     setBookList(books);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [books]);
 
   const booksReadCount = bookList.filter(
