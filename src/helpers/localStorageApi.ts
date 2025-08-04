@@ -23,6 +23,13 @@ export const updateBookValue = (title: string, updatedPages: number) => {
   const storedBooks = getValueFromStorage();
   const updatedBooks = storedBooks.map((book: Book) => {
     if (book.title === title) {
+      const pagesToUpdate = book.currentPage + updatedPages;
+      if(pagesToUpdate > book.totalPages){
+        return {
+        ...book,
+        currentPage: book.totalPages,
+      };      
+    }
       return {
         ...book,
         currentPage: book.currentPage + updatedPages,
