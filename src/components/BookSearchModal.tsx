@@ -17,6 +17,23 @@ interface BookSearchModalProps {
   initialQuery?: string;
 }
 
+interface GoogleBooksVolumeInfo {
+  title?: string;
+  authors?: string[];
+  categories?: string[];
+  pageCount?: number;
+  description?: string;
+  imageLinks?: {
+    thumbnail?: string;
+    smallThumbnail?: string;
+  };
+}
+
+interface GoogleBooksItem {
+  id: string;
+  volumeInfo: GoogleBooksVolumeInfo;
+}
+
 export const BookSearchModal: React.FC<BookSearchModalProps> = ({
   isOpen,
   onClose,
@@ -51,7 +68,7 @@ export const BookSearchModal: React.FC<BookSearchModalProps> = ({
 
       // Check if items exist and process them
       if (results.items && results.items.length > 0) {
-        results.items.forEach((item: any) => {
+        results.items.forEach((item: GoogleBooksItem) => {
           // Add safety checks for missing data
           items.push({
             id: item.id || Math.random().toString(),
@@ -202,8 +219,8 @@ export const BookSearchModal: React.FC<BookSearchModalProps> = ({
         {initialQuery && (
           <div className="mb-4 p-3 bg-neutral-800 rounded-md">
             <p className="text-neutral-300 text-sm">
-              <span className="text-neutral-400">Searching for:</span> "
-              {initialQuery}"
+              <span className="text-neutral-400">Searching for:</span>
+              {initialQuery}
             </p>
           </div>
         )}
