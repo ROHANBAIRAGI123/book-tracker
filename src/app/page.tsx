@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ReadingList } from "../components/ReadingList";
 import Head from "next/head";
 import { useBookStoreList } from "@/store/useBookStore";
-import { getValueFromStorage } from "@/helpers/localStorageApi";
+import { getValueFromStorage } from "@/lib/localStorageApi";
 
 export default function Home() {
   const { bookList, setBookList } = useBookStoreList();

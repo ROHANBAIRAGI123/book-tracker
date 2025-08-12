@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AddPages } from "./AddPages";
 import { useBookStoreList, useDeleteBook } from "@/store/useBookStore";
-import { getValueFromStorage } from "@/helpers/localStorageApi";
+import { getValueFromStorage } from "@/lib/localStorageApi";
 import { HiDotsVertical } from "react-icons/hi";
 import { BookCardProps } from "@/types";
 

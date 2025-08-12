@@ -1,4 +1,4 @@
-import { deleteBookFromStorage } from "@/helpers/localStorageApi";
+import { deleteBookFromStorage } from "@/lib/localStorageApi";
 import { Book, NewBookData } from "@/types";
 import { create } from "zustand";
 

@@ -1,4 +1,4 @@
-import { updateBookValue } from "@/helpers/localStorageApi";
+import { updateBookValue } from "@/lib/localStorageApi";
 import { AddPagesProps } from "@/types";
 import React from "react";
 

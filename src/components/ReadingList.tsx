@@ -4,7 +4,7 @@ import { BookCard } from "./BookCard";
 import { AddBookForm } from "./AddBookForm";
 import { v4 as uuidv4 } from "uuid";
 import { useBookStoreForm, useBookStoreList } from "../store/useBookStore";
-import { addValueToStorage } from "@/helpers/localStorageApi";
+import { addValueToStorage } from "@/lib/localStorageApi";
 import { ReadingListProps, Book } from "@/types";
 
 export const ReadingList: React.FC<ReadingListProps> = ({ books, title }) => {
