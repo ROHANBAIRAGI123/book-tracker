@@ -10,10 +10,23 @@ export default function Home() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const stored = getValueFromStorage();
-    setBookList(stored);
-    setLoaded(true);
+    async function loadBooks() {
+      try {
+        const res = await fetch("/api/books", {
+          method: "GET",
+        });
+        if (!res.ok) throw new Error("Failed to fetch books");
+        const data = await res.json();
+        setBookList(data.books);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoaded(true);
+      }
+    }
+    loadBooks();
   }, []);
+
   if (!loaded) return <div>Loading...</div>;
   return (
     <div>

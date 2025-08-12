@@ -8,7 +8,7 @@ interface BookResult {
   id: string;
   title: string;
   author: string;
-  type: string;
+  // type: string;
   totalPages: number;
   imageUrl: string;
   description?: string;
@@ -66,7 +66,7 @@ export const AddBookForm: React.FC<AddBookFormProps> = ({
       ...formData,
       title: book.title,
       author: book.author,
-      type: book.type,
+      // type: book.type,
       totalPages: book.totalPages.toString(),
       currentPage: "0",
     });
@@ -141,9 +141,10 @@ export const AddBookForm: React.FC<AddBookFormProps> = ({
               onChange={handleChange}
               className="w-full bg-neutral-900 border border-neutral-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-1 focus:ring-yellow-500"
             >
-              <option value="to be read">To Be Read</option>
-              <option value="in progress">In Progress</option>
-              <option value="completed">Completed</option>
+              <option value="READING">READING</option>
+              <option value="DROPPED">DROPPED</option>
+              <option value="COMPLETED">COMPLETED</option>
+              <option value="ON_HOLD">ON_HOLD</option>
             </select>
           </div>
 
@@ -155,8 +156,8 @@ export const AddBookForm: React.FC<AddBookFormProps> = ({
             <input
               type="text"
               name="type"
-              value={formData.type}
-              onChange={handleChange}
+              // value={formData.type}
+              // onChange={handleChange}
               className="w-full bg-neutral-900 border border-neutral-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-1 focus:ring-yellow-500"
             />
           </div>

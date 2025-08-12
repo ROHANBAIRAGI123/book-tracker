@@ -27,7 +27,7 @@ export interface NewBookData {
   author: string;
   currentPage: string;
   totalPages: string;
-  status: "in progress" | "completed" | "to be read";
+  status: "READING" | "ON_HOLD" | "DROPPED" | "COMPLETED";
   type: string;
 }
 

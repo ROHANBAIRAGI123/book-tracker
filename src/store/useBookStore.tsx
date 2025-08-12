@@ -37,7 +37,7 @@ const useBookStoreFormData = create<BookStoreFormData>()((set) => ({
     author: "",
     currentPage: "0",
     totalPages: "0",
-    status: "to be read",
+    status: "READING",
     type: "",
   },
   setFormData: (data: NewBookData) => {

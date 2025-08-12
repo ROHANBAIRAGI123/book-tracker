@@ -15,17 +15,34 @@ export const ReadingList: React.FC<ReadingListProps> = ({ books, title }) => {
     setBookList(books);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [books]);
+  console.log(bookList);
 
-  const booksReadCount = bookList.filter(
+  const booksReadCount = books.filter(
     (book) => book.status === "completed"
   ).length;
   const totalBooksCount = bookList.length;
   const progressSummary = `${booksReadCount} of ${totalBooksCount} books read`;
 
-  const handleAddBook = (newBookData: Omit<Book, "id">) => {
+  const handleAddBook = async (newBookData: Omit<Book, "id">) => {
     const newBook = { id: uuidv4(), ...newBookData };
     setBookList([...bookList, newBook]);
-    addValueToStorage(newBook);
+    console.log("newBook", newBookData);
+    try {
+      const res = await fetch("/api/books", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // This was missing!
+        },
+        body: JSON.stringify(newBookData),
+      });
+      console.log(res);
+      console.log(res.ok);
+      // if (!res.ok) throw new Error("Failed to Update books");
+      const data = await res.json();
+      setBookList(data.books);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
